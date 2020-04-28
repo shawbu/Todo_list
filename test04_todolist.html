@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To Do List</title>
+    <link rel="stylesheet" href="reset.css">
+    <link rel="stylesheet" href="test04.css">
+    <script src="test.js"></script>
+    
+</head>
+<body>
+    <header>
+        <div class="header">
+            <div class="header-fixed">
+                <div class="title">
+                    <h1>TO DO LIST</h1>
+                </div>
+                <DIv class="time">
+                    <div>
+                        <span>可用時間：</span>
+                        <span id="freetime">500</span>
+                        <span>min</span>
+                    </div>
+                    <div>
+                        <span>工作時間：</span>
+                        <span id="worktime">400</span>
+                        <span>min</span>
+                    </div>
+                    <div class="time-circle">
+                        <p>危急程度</p>
+                    </div>
+                </DIv>
+            </div>
+        </div>
+    </header>
+
+
+    <section class="item">
+        <div id="sectionCHG"></div>
+        <div>
+            <div class="item01">
+                <div class="checkbox">
+                    <input type="checkbox">  
+                </div>
+                <div class="detail">
+                    <span>練習寫程式</span>
+                </div>
+                <div class="point">
+                    <p>10</p>
+                </div>
+                <div class="spend_time">
+                    <span id="spend_time">561</span>
+                    <span>mins</span>
+                </div>
+            </div>
+        </div>
+        
+
+
+
+        <form action="">
+            <div class="item01">
+                <div class="checkbox">
+                    <input type="button" onclick="go()">
+                </div>
+                <div class="detail">
+                    <input type="text" id="list" placeholder="代辦事項">
+                </div>
+
+                <div class="point">   
+                    <div>重要程度
+                        <select id="point">
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                            <option value="9">9</option>
+                            <option value="10">10</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="spend_time">
+                    <input type="number" id="spendtime" placeholder="所需時間" min=0>
+                </div>
+            </div>
+        </form>
+
+
+       
+        
+    </section>
+    
+
+    <section class="add_item">
+        <div class="add_button">
+            <div>+ 新增事項</div>
+        </div>
+
+    </section>
+
+
+
+    <footer class="footer">
+        &copy; copyright 2020 by buuuu
+    </footer>
+
+</body>
+</html> 
