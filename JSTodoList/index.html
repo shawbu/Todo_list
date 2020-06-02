@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JS-TodoList</title>
+    <link rel="stylesheet" href="reset.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        
+    </header>
+    <main>
+        <section>
+            <div>
+                <h2>Item length:</h2><p id=""></p>
+                <ul>
+                    <li>Apple</li>
+                    <li>Banana</li>
+                    <li>Orange</li>
+                </ul>
+                <div id="newItemButton">
+                    <button >add</button>
+                    <form action="" id="newItemForm">
+                        new item：
+                        <input type="text" id="text">
+                        <input type="submit" value="sub">
+                    </form>
+
+                </div>
+            </div>
+            
+        </section>
+    </main>
+    <script src="jquery.js"></script>
+    <script>
+        
+        $(function(){
+        //初始化設定
+        var $list, $newItemForm, $newItemButton;
+        var item='';
+        $list =$('ul');
+        $newItemForm =$('#newItemForm');
+        $newItemButton =$('#newItemButton');
+        
+        $('li').hide().each(function(index){
+            $(this).delay(450*index).fadeIn(1600);
+        });
+
+        //清單項目計數器
+        function updateCount(){
+            var items= $('li[class! complete]').length;
+            $('#counter').text(items);
+        }
+        updateCount();
+
+        //初始化設定新增清單項目表單
+        $newItemButton.show();
+        $newItemButton.hide();
+        $('#showForm').on('click',function(){
+            $newItemButton.hide();
+            $newItemForm.show();
+        });
+
+        //加入一個新清單項目
+        $newItemForm.on('submit',function(e){
+            e.preventDefault();
+            var text =$('input:text').val();
+            $list.append('<li>'+text+'</li>');
+            $('input:text').val();
+            updateCount();
+        });
+
+        //點擊事件處理 - 針對ul元件使用事件委派
+        $list.on('click','li',function(){
+            var $this = $(this);
+            var complete=$this.hasClass('complete');
+
+            if(complete===true){
+                $this.animate({
+                    opacity:0.0,
+                    paddingLeft:'+=180'
+                }, 500,'swing',function(){
+                    $this.remove();
+                });
+            } else{
+                item=$this.text();
+                $this.remove();
+                $list
+                    .append('<li class=\"complete\">'+item+'</li>')
+                    .hide().fadeIn(300);
+                updateCount();
+            }
+        });
+            
+        });
+    </script>
+</body>
+</html>
