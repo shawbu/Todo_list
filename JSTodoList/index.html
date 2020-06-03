@@ -6,6 +6,7 @@
     <title>JS-TodoList</title>
     <link rel="stylesheet" href="reset.css">
     <link rel="stylesheet" href="style.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 </head>
 <body>
     <header>
@@ -14,26 +15,21 @@
     <main>
         <section>
             <div>
-                <h2>Item length:</h2><p id=""></p>
+                <h2>Item length:<span id="counter"></span></h2>
                 <ul>
                     <li>Apple</li>
                     <li>Banana</li>
                     <li>Orange</li>
                 </ul>
-                <div id="newItemButton">
-                    <button >add</button>
-                    <form action="" id="newItemForm">
-                        new item：
-                        <input type="text" id="text">
-                        <input type="submit" value="sub">
-                    </form>
-
-                </div>
+                <div id="newItemButton"><button href="#" id="showForm">new item</button></div>
+                <form id="newItemForm">
+                    <input type="text" id="itemDescription" placeholder="Add description" />
+                    <input type="submit" id="add" value="add" />
+                </form>
             </div>
             
         </section>
     </main>
-    <script src="jquery.js"></script>
     <script>
         
         $(function(){
@@ -50,14 +46,14 @@
 
         //清單項目計數器
         function updateCount(){
-            var items= $('li[class! complete]').length;
+            var items= $('li[class!=complete]').length;
             $('#counter').text(items);
         }
         updateCount();
 
         //初始化設定新增清單項目表單
         $newItemButton.show();
-        $newItemButton.hide();
+        $newItemForm.hide();
         $('#showForm').on('click',function(){
             $newItemButton.hide();
             $newItemForm.show();
@@ -68,7 +64,7 @@
             e.preventDefault();
             var text =$('input:text').val();
             $list.append('<li>'+text+'</li>');
-            $('input:text').val();
+            $('input:text').val('');
             updateCount();
         });
 
