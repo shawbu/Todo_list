@@ -15,13 +15,19 @@
             <div>
                 <div class="header">
                     <h1>Todo List</h1>
-                    <h2>Item length:<span id="counter"></span></h2>
+                    
+                    <h2>你今天要做<span id="counter"></span>件事，你已經完成<span id="okcounter"></span>件了!</h2>
                 </div>
                 
-                <ul>
+                <ul class="main">
+                    <h3>Things todo</h3>
                     <li>Apple</li>
                     <li>Banana</li>
                     <li>Orange</li>
+                </ul>
+                <ul class="complete">
+                    <h3>Item you complete</h3>
+
                 </ul>
                 <div id="newItemButton"><button href="#" id="showForm">new item</button></div>
                 <form id="newItemForm">
@@ -38,7 +44,8 @@
         //初始化設定
         var $list, $newItemForm, $newItemButton;
         var item='';
-        $list =$('ul');
+        $list =$('ul.main');
+        $completelist = $('ul.complete')
         $newItemForm =$('#newItemForm');
         $newItemButton =$('#newItemButton');
         
@@ -48,10 +55,16 @@
 
         //清單項目計數器
         function updateCount(){
-            var items= $('li[class!=complete]').length;
+            var items= $('li[class!=completeItem]').length;
             $('#counter').text(items);
         }
         updateCount();
+         //完成清單項目計數器
+         function updateCount2(){
+            var items= $('li[class=completeItem]').length;
+            $('#okcounter').text(items);
+        }
+        updateCount2();
 
         //初始化設定新增清單項目表單
         $newItemButton.show();
@@ -73,7 +86,7 @@
         //點擊事件處理 - 針對ul元件使用事件委派
         $list.on('click','li',function(){
             var $this = $(this);
-            var complete=$this.hasClass('complete');
+            var complete=$this.hasClass('completeItem');
 
             if(complete===true){
                 $this.animate({
@@ -85,10 +98,11 @@
             } else{
                 item=$this.text();
                 $this.remove();
-                $list
-                    .append('<li class=\"complete\">'+item+'</li>')
+                $completelist
+                    .append('<li class=\"completeItem\">'+item+'</li>')
                     .hide().fadeIn(300);
                 updateCount();
+                updateCount2();
             }
         });
             
