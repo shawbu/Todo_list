@@ -79,7 +79,7 @@
                 e.preventDefault();
                 var text =$('input:text').val();
                 if(text ==''){
-                    
+
                 }else{
                     $list.append('<li class=\"norItem\">'+text+'</li>');
                 }               
@@ -91,6 +91,8 @@
             $cancel.on('click',function(){
                 $newItemButton.show();
                 $newItemForm.hide();
+                $('input:text').val('');
+                return false;
                 
             })
 
