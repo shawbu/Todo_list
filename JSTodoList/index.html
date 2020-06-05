@@ -16,7 +16,7 @@
                 <div class="header">
                     <h1>Todo List</h1>
                     
-                    <h2>你今天要做<span id="counter"></span>件事，你已經完成<span id="okcounter"></span>件了!</h2>
+                    <h2>你今天還要做<span id="counter"></span>件事，你已經完成<span id="okcounter"></span>件了!</h2>
                 </div>
                 
                 <ul class="main">
@@ -41,71 +41,111 @@
     <script>
         
         $(function(){
-        //初始化設定
-        var $list, $newItemForm, $newItemButton;
-        var item='';
-        $list =$('ul.main');
-        $completelist = $('ul.complete')
-        $newItemForm =$('#newItemForm');
-        $newItemButton =$('#newItemButton');
-        
-        $('li').hide().each(function(index){
-            $(this).delay(450*index).fadeIn(1600);
-        });
-
-        //清單項目計數器
-        function updateCount(){
-            var items= $('li[class!=completeItem]').length;
-            $('#counter').text(items);
-        }
-        updateCount();
-         //完成清單項目計數器
-         function updateCount2(){
-            var items= $('li[class=completeItem]').length;
-            $('#okcounter').text(items);
-        }
-        updateCount2();
-
-        //初始化設定新增清單項目表單
-        $newItemButton.show();
-        $newItemForm.hide();
-        $('#showForm').on('click',function(){
-            $newItemButton.hide();
-            $newItemForm.show();
-        });
-
-        //加入一個新清單項目
-        $newItemForm.on('submit',function(e){
-            e.preventDefault();
-            var text =$('input:text').val();
-            $list.append('<li>'+text+'</li>');
-            $('input:text').val('');
-            updateCount();
-        });
-
-        //點擊事件處理 - 針對ul元件使用事件委派
-        $list.on('click','li',function(){
-            var $this = $(this);
-            var complete=$this.hasClass('completeItem');
-
-            if(complete===true){
-                $this.animate({
-                    opacity:0.0,
-                    paddingLeft:'+=180'
-                }, 500,'swing',function(){
-                    $this.remove();
-                });
-            } else{
-                item=$this.text();
-                $this.remove();
-                $completelist
-                    .append('<li class=\"completeItem\">'+item+'</li>')
-                    .hide().fadeIn(300);
-                updateCount();
-                updateCount2();
-            }
-        });
+            //初始化設定
+            var $list, $newItemForm, $newItemButton;
+            var item='';
+            $list =$('ul.main');
+            $completelist = $('ul.complete')
+            $newItemForm =$('#newItemForm');
+            $newItemButton =$('#newItemButton');
             
+            $('li').hide().each(function(index){
+                $(this).delay(450*index).fadeIn(1600);
+            });
+
+            //清單項目計數器
+            function updateCount(){
+                var items= $('li[class!=completeLi]').length;
+                $('#counter').text(items);
+            }
+            updateCount();
+            //完成清單項目計數器
+            function updateCount2(){
+                var items= $('li[class=completeLi]').length;
+                $('#okcounter').text(items);
+            }
+            updateCount2();
+
+            //初始化設定新增清單項目表單
+            $newItemButton.show();
+            $newItemForm.hide();
+            $('#showForm').on('click',function(){
+                $newItemButton.hide();
+                $newItemForm.show();
+            });
+
+            //加入一個新清單項目
+            $newItemForm.on('submit',function(e){
+                e.preventDefault();
+                var text =$('input:text').val();
+                $list.append('<li class=\"norItem\">'+text+'</li>');
+                $('input:text').val('');
+                updateCount();
+            });
+
+            //點擊事件處理 - 針對ul元件使用事件委派
+            $list.on('click','li',function(){
+                var $this = $(this);
+                var complete=$this.hasClass('completeItem');
+
+                if(complete===true){
+
+                } else{
+                    item=$this.text();
+                    $this.remove();
+                    $completelist
+                        .append(
+                            '<li class=\"completeLi\">'
+                            +'<span class=\"completeItem\">'
+                            +item
+                            +'</span>'
+                            +'<img class=\"del\" src=\"./image/trash.png\" >'
+                            +'</li>'
+                            )
+                        .hide().fadeIn(300);
+                    updateCount();
+                    updateCount2();
+                }
+            });
+
+            //點擊事件處理 - 刪除已完成的項目
+            $completelist.on('click','img.del',function(){
+                var $this = $(this);
+                var complete=$this.hasClass('del');
+
+                if(complete===true){
+                    $this.animate({
+                        opacity:0.0,
+                        paddingLeft:'+=180'
+                    }, 500,'swing',function(){
+                        $this.parent().remove();
+                        updateCount2();
+                    });
+                } 
+            }); 
+            
+            //點擊事件處理 - 把已完成的項目改回未完成
+            $completelist.on('click','span',function(){
+                var $this = $(this);
+                var complete=$this.hasClass('completeItem');
+
+                if(complete===true){
+                    item=$this.text();
+                    $this.parent().remove();
+                    $list
+                        .append(
+                            '<li class=\"norItem\">'
+                            +item
+                            +'</li>'
+                            )
+                        .hide().fadeIn(300);
+                    updateCount();
+                    updateCount2();
+                } 
+            }); 
+
+
+
         });
     </script>
 </body>

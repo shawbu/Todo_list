@@ -12,6 +12,7 @@ h1{
 }
 
 h2{
+    
     font-size: 2rem;
     padding: 1rem;
     
@@ -25,8 +26,23 @@ li{
     margin: 1rem;
     padding: 1rem;
     background-color: rgb(233, 227, 171);
+    
+}
+.norItem{
+    background-color: rgb(73, 89, 182);
+}
+
+.completeLi{
+    background-color: rgb(139, 94, 94);
+    display: flex;
+    justify-content: space-between;
 }
 
 .completeItem{
     background-color: rgb(163, 24, 24);
+  
+}
+
+.del{
+    background-color: rgb(72, 211, 90);
 }
