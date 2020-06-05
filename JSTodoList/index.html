@@ -20,19 +20,19 @@
                 </div>
                 
                 <ul class="main">
-                    <h3>Things todo</h3>
-                    <li>Apple</li>
-                    <li>Banana</li>
-                    <li>Orange</li>
+                    <h3>代辦事項</h3>
+                   
                 </ul>
                 <ul class="complete">
-                    <h3>Item you complete</h3>
+                    <h3>已完成的事項</h3>
 
                 </ul>
                 <div id="newItemButton"><button href="#" id="showForm">new item</button></div>
                 <form id="newItemForm">
                     <input type="text" id="itemDescription" placeholder="Add description" />
                     <input type="submit" id="add" value="add" />
+                    <button href="#" id="cancel">cancel</button>
+                    
                 </form>
             </div>
             
@@ -78,10 +78,21 @@
             $newItemForm.on('submit',function(e){
                 e.preventDefault();
                 var text =$('input:text').val();
-                $list.append('<li class=\"norItem\">'+text+'</li>');
+                if(text ==''){
+                    
+                }else{
+                    $list.append('<li class=\"norItem\">'+text+'</li>');
+                }               
                 $('input:text').val('');
                 updateCount();
             });
+            //取消加入新事項
+            $cancel= $('#cancel');
+            $cancel.on('click',function(){
+                $newItemButton.show();
+                $newItemForm.hide();
+                
+            })
 
             //點擊事件處理 - 針對ul元件使用事件委派
             $list.on('click','li',function(){
