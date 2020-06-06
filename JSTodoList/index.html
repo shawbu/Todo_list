@@ -12,27 +12,36 @@
 
     <main>
         <section>
-            <div>
+            <div class="container">
                 <div class="header">
                     <h1>Todo List</h1>
-                    
                     <h2>你今天還要做<span id="counter"></span>件事，你已經完成<span id="okcounter"></span>件了!</h2>
+                    <div class="remind">
+                        <h4> | 使用教學 | </h4>
+                        <p>1. 按一下 Add New Item 就可以開始新增代辦事項囉!</p>
+                        <p>2. 完成代辦事項後按一下可以將事項移置完成事項區域呦!</p>
+                        <p>3. 按一下已完成的事項可以將事項回復到代辦事項區域呦!</p>
+                        <p>4. 按一下垃圾桶可以刪除事項呦! ( ps. 刪除的物件不算再完成的事項 )</p>
+                        <span id="remindClose" class="remindClose">我了解了!</span>
+                    </div>
+                    <span id="showRemind" class="showRemind">使用教學</span>
+                    
+                    
                 </div>
-                
                 <ul class="main">
                     <h3>代辦事項</h3>
-                   
                 </ul>
                 <ul class="complete">
                     <h3>已完成的事項</h3>
-
-                </ul>
-                <div id="newItemButton"><button href="#" id="showForm">new item</button></div>
-                <form id="newItemForm">
-                    <input type="text" id="itemDescription" placeholder="Add description" />
-                    <input type="submit" id="add" value="add" />
-                    <button href="#" id="cancel">cancel</button>
                     
+                </ul>
+                <div id="newItemButton">
+                    <button href="#" id="showForm" class="button">Add New Item</button>
+                </div>
+                <form id="newItemForm">
+                    <input type="text" id="itemDescription" placeholder="Add description :3 " class="description" />
+                    <input type="submit" id="add" value="Add"  class="button"/>
+                    <button href="#" id="cancel" class="button">Cancel</button>
                 </form>
             </div>
             
@@ -45,15 +54,31 @@
             var $list, $newItemForm, $newItemButton;
             var item='';
             $list =$('ul.main');
-            $completelist = $('ul.complete')
+            $completelist = $('ul.complete');
             $newItemForm =$('#newItemForm');
             $newItemButton =$('#newItemButton');
             
             $('li').hide().each(function(index){
                 $(this).delay(450*index).fadeIn(1600);
             });
+            
+            //關掉提醒事項 &隱藏 開啟教學按紐
+            $showRemind=$('#showRemind');
+            $close=$('#remindClose');
+            $showRemind.hide();
 
-            //清單項目計數器
+            $close.on('click',function(){
+                $close.parent().hide();
+                $showRemind.show();
+            });
+
+            //打開教學
+            $showRemind.on('click',function(){
+                $close.parent().show();
+                $showRemind.hide();
+            });
+           
+           //清單項目計數器
             function updateCount(){
                 var items= $('li[class!=completeLi]').length;
                 $('#counter').text(items);

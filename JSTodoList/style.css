@@ -1,48 +1,77 @@
 *{
     font-family: '微軟正黑體';
     text-align: center;
+    box-sizing: border-box;
 }
 
-.header{
-    background-color: #bfe2bc7c;
-    padding: 1rem;
-}
 h1{
     font-size:  2.5rem;;
 }
-
 h2{
-    
     font-size: 2rem;
     padding: 1rem;
-    
 }
 ul{
     font-size: 1.5rem;
     padding: 1rem;
-    
 }
 li{
     margin: 1rem;
     padding: 1rem;
-    background-color: rgb(233, 227, 171);
+    background-color: rgb(233, 227, 171); 
+}
+.container{
+    background-color:  rgb(214,228,231);
     
 }
-.norItem{
-    background-color: rgb(73, 89, 182);
+.header{
+    background-color: rgb(214,228,231);
+    padding: 1rem;
 }
 
+.remind{
+    padding: 0.5rem;
+    background-color: rgba(254,228,179,0.5);
+    text-align: center;
+}
+.header p {
+    margin: 1rem ;
+  
+}
+.remindClose{
+    background-color: rgb(254,181,68);
+    margin: 0.5rem;
+    padding: 0.1rem;
+}
+.showRemind{
+    background-color:  RGB(192,211,217);
+    margin: 0.5rem;
+    padding: 0.1rem;
+}
+.button{
+    background-color: #FFD686;
+    border: none;
+    margin: 1rem 0.5rem;
+    padding: 0.5rem;
+}
+.description{
+    padding: 0.3rem;
+    border: none;  
+}
+.norItem{
+    background-color:  rgba(254,228,179,1);
+    color: #fff;
+}
 .completeLi{
-    background-color: rgb(139, 94, 94);
+   
     display: flex;
     justify-content: space-between;
+    background-color: RGB(192,211,217);
 }
-
 .completeItem{
-    background-color: rgb(163, 24, 24);
-  
+    color: #888;
 }
 
 .del{
-    background-color: rgb(72, 211, 90);
+    opacity: 0.5;
 }
