@@ -60,18 +60,21 @@ li{
 }
 .norItem{
     background-color:  rgba(254,228,179,1);
-    color: #fff;
 }
 .completeLi{
-   
     display: flex;
     justify-content: space-between;
     background-color: RGB(192,211,217);
+   
 }
 .completeItem{
     color: #888;
+    align-items: center;
 }
 
 .del{
     opacity: 0.5;
+}
+.del img{
+    width: 100%;
 }
